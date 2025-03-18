@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pixel.academy.crud_app.entity.Student;
 
-import javax.swing.text.html.parser.Entity;
-
 @Repository
 public class StudentDAOImplimentation implements StudentDAO {
 
@@ -19,12 +17,15 @@ public class StudentDAOImplimentation implements StudentDAO {
     public StudentDAOImplimentation(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
-
     //Implementarea metodei save pentru salvarea unui obiect Student in baza de date
     @Override
     @Transactional
     public void save(Student theStudent) {
-            entityManager.persist(theStudent);
+        entityManager.persist(theStudent);
+    }
+    @Override
+    public Student findByID(Integer id) {
+        return entityManager.find(Student.class, id);
     }
 
 }
