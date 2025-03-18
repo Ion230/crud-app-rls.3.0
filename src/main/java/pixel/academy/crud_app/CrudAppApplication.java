@@ -30,29 +30,20 @@ public class CrudAppApplication {
 		};
 	}
 
-	private void queryForStudentsByLastName(StudentDAO studentDAO) {
-		//returneaza lista de studenti
-		List<Student> theStudent = studentDAO.findByLastName("Popescu");
-
-		//afiseazza lista de studenti
-		for (Student newStudent : theStudent) {
-			System.out.println(newStudent);
-		}
-	}
-
 	private void createStudent(StudentDAO studentDAO) {
 
 		//cream un obiect Student
-			System.out.println("Creating new student object...");
-			Student newStudent = new Student("John", "Doe", "john@pixelacademy.md");
+		System.out.println("Creating new student object...");
+		Student newStudent = new Student("John", "Doe", "john@pixelacademy.md");
 
 		//salvam obiectul Student in baza de date folosind DAO(Data-Acces-Object)
-			System.out.println("Saving the student...");
-			studentDAO.save(newStudent);
+		System.out.println("Saving the student...");
+		studentDAO.save(newStudent);
 
 		//afisam ID-UL studentului salvat
-			System.out.println("Saved student. Generated id:" +newStudent.getId());
+		System.out.println("Saved student. Generated id:" + newStudent.getId());
 	}
+
 	private void createMultipleStudents(StudentDAO studentDAO) {
 		//cream mai multi studenti
 		System.out.println("Creating 3 student objects...");
@@ -66,6 +57,7 @@ public class CrudAppApplication {
 		studentDAO.save(newStudent2);
 		studentDAO.save(newStudent3);
 	}
+
 	private void readStudent(StudentDAO studentDAO) {
 
 		//creeaza un obiect de tip Student
@@ -87,6 +79,7 @@ public class CrudAppApplication {
 		//afiseaza detaliile studentului
 		System.out.println("Found the student: " + myStudent);
 	}
+
 	private void queryForStudents(StudentDAO studentDAO) {
 
 		//obtine lista de studenti
@@ -96,9 +89,15 @@ public class CrudAppApplication {
 		for (Student newStudent : theStudents) {
 			System.out.println(newStudent);
 		}
-
-		}
 	}
 
+	private void queryForStudentsByLastName(StudentDAO studentDAO) {
+		//returneaza lista de studenti
+		List<Student> theStudent = studentDAO.findByLastName("Popescu");
 
-
+		//afiseazza lista de studenti
+		for (Student newStudent : theStudent) {
+			System.out.println(newStudent);
+		}
+	}
+}
