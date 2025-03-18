@@ -8,6 +8,8 @@ import pixel.academy.crud_app.dao.StudentDAO;
 import pixel.academy.crud_app.dao.StudentDAOImplimentation;
 import pixel.academy.crud_app.entity.Student;
 
+import java.util.List;
+
 @SpringBootApplication
 public class CrudAppApplication {
 
@@ -21,10 +23,24 @@ public class CrudAppApplication {
 		return runner -> {
 			//createStudent(studentDAO);
 			//createMultipleStudents(studentDAO);
-			readStudent(studentDAO);
+			//readStudent(studentDAO);
+			//queryForStudents(studentDAO);
+
+			queryForStudentsByLastName(studentDAO);
 		};
 	}
-		private void createStudent(StudentDAO studentDAO) {
+
+	private void queryForStudentsByLastName(StudentDAO studentDAO) {
+		//returneaza lista de studenti
+		List<Student> theStudent = studentDAO.findByLastName("Popescu");
+
+		//afiseazza lista de studenti
+		for (Student newStudent : theStudent) {
+			System.out.println(newStudent);
+		}
+	}
+
+	private void createStudent(StudentDAO studentDAO) {
 
 		//cream un obiect Student
 			System.out.println("Creating new student object...");
@@ -71,6 +87,18 @@ public class CrudAppApplication {
 		//afiseaza detaliile studentului
 		System.out.println("Found the student: " + myStudent);
 	}
-}
+	private void queryForStudents(StudentDAO studentDAO) {
+
+		//obtine lista de studenti
+		List<Student> theStudents = studentDAO.findAll();
+
+		//afiseaza lista de studenti
+		for (Student newStudent : theStudents) {
+			System.out.println(newStudent);
+		}
+
+		}
+	}
+
 
 
